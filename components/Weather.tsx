@@ -1,10 +1,8 @@
 import {useEffect, useState} from "react";
 import ForeCast from "@/components/ForCast";
 
-const api: string = "https://api.weather.gov/alerts/active?area=FL";
 
 const MyWeather = () => {
-    const [data, setData] = useState(null);
     const [forcastData, setForcastData] = useState(null);
 
     const getLocation = () => {
@@ -26,29 +24,12 @@ const MyWeather = () => {
     }
 
     useEffect(() => {
-        fetch(api)
-            .then(response => response.json())
-            .then(data => setData(data));
-        getLocation();}, []);
+        getLocation();
+        },
+        []
+    );
     return (
         <div>
-            {data ? (
-                <div>
-                    <h1>{data.title}</h1>
-                    <p>Last Updated: {data.updated}</p>
-                    <ul>
-                    {
-                            data.features.map((feature, index) => (
-                                <li key={index}>
-                                    {JSON.stringify(feature.senderName)}
-                                </li>)
-                            )
-                        }
-                    </ul>
-                </div>
-            ) : (
-                "Loading any warnings..."
-            )}
             <ul>
                 {
                     forcastData ? <div>
