@@ -10,24 +10,6 @@ services:
       - '/var/run/docker.sock:/tmp/docker.sock'
     restart: always
 
-  pihole:
-    image: pihole/pihole:latest
-    ports:
-      - '53:53/tcp'
-      - '53:53/udp'
-      - "67:67/udp"
-      - '8053:80/tcp'
-    volumes:
-      - './etc-pihole:/etc/pihole'
-      - './etc-dnsmasq.d:/etc/dnsmasq.d'
-      # run `touch ./var-log/pihole.log` first unless you like errors
-      # - './var-log/pihole.log:/var/log/pihole/pihole.log'
-    # Recommended but not required (DHCP needs NET_ADMIN)
-    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-    cap_add:
-      - NET_ADMIN
-    env_file: .env
-    restart: always
   app:
     build:
       context: .
