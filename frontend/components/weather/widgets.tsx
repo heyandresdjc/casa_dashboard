@@ -79,11 +79,7 @@ const WeatherWidget = () => {
                             }
                         </span>
                     </div>
-                    {
-                        first ?
-                            <img src={first.icon} alt={first.shortForecast}/> :
-                            <Image src="/svg/weather/not-available.svg" alt="N/A" width={20} height={20}/>
-                    }
+                    <Image src="/svg/weather/not-available.svg" alt="N/A" width={120} height={120}/>
                 </div>
                 <div className="flex justify-between mt-12">
                     {firstFivePeriods.map((period: period, index: number) => <div key={index} className="flex flex-col items-center">
