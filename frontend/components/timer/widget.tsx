@@ -51,7 +51,7 @@ const TimerWidget = () => {
     });
 
     return (
-        <div className="w-full max-w-screen-sm bg-white p-5 rounded-xl ring-8 ring-white ring-opacity-40 text-gray-500 m-5">
+        <div suppressHydrationWarning className="w-full max-w-screen-sm bg-white p-5 rounded-xl ring-8 ring-white ring-opacity-40 text-gray-500 m-5">
             <h1>End of the year: {year} Countdown</h1>
             {
                 timerComponents.length ? <div className="grid grid-flow-col gap-5 text-center">
