@@ -1,6 +1,7 @@
+"use client";
 import {useEffect, useState} from 'react';
-import Image from 'next/image'
 import {period} from '../../types';
+import Image from "next/image";
 
 
 const TempParser = (period: period): string => {
@@ -59,7 +60,7 @@ const WeatherWidget = () => {
 
     const firstFivePeriods = forecastHourlyData ? forecastHourlyData.slice(0, 5):[];
 
-    const first = firstFivePeriods.length > 0 ? firstFivePeriods[0]:null;
+    const first = firstFivePeriods[0];
 
     // @ts-ignore
     return (
@@ -78,7 +79,11 @@ const WeatherWidget = () => {
                             }
                         </span>
                     </div>
-                    <img src={first.icon} alt={first.shortForecast} />
+                    {
+                        first ?
+                            <img src={first.icon} alt={first.shortForecast}/> :
+                            <Image src="/svg/weather/not-available.svg" alt="N/A" width={20} height={20}/>
+                    }
                 </div>
                 <div className="flex justify-between mt-12">
                     {firstFivePeriods.map((period: period, index: number) => <div key={index} className="flex flex-col items-center">
