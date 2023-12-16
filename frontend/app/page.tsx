@@ -1,16 +1,16 @@
 "use client";
-import { MyTimer } from "@/components/MyTimer";
-import MyWeather from "@/components/Weather";
+import WeatherWidget from "@/components/weather/widgets";
+import TimerWidget from "@/components/timer/widget";
 
 
 export default function Home() {
       return (
-          <main className="flex flex-col p-12">
+          <main className="container mx-auto">
               <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-                  <h2>DJC Home Page</h2>
+                  <h1>DJC Home Page</h1>
               </div>
-              <MyWeather />
-              {/*<MyTimer />*/}
+              <TimerWidget />
+              <WeatherWidget />
           </main>
       )
 }

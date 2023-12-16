@@ -11,4 +11,10 @@ function convertToSeconds(timeString: string) {
     }
 }
 
-export {convertToSeconds}
+
+function celsiusToFahrenheit(celsius: number): number {
+  let fahrenheit = (celsius * 9/5) + 32;
+  return fahrenheit;
+}
+
+export {convertToSeconds, celsiusToFahrenheit}
