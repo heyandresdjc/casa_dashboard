@@ -29,7 +29,7 @@ const WeatherWidget = () => {
     const getLocation = (): void => {
         if("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                let url: string = `http://127.0.0.1:8000/weather/${position.coords.latitude},${position.coords.longitude}`
+                let url: string = `http://0.0.0.0:8000/weather/${position.coords.latitude},${position.coords.longitude}`
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {

@@ -38,7 +38,7 @@ const TimerWidget = () => {
         if (timeLeft[interval]) {
             timerComponents.push(
                 // @ts-ignore
-                <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+                <div key={timeLeft[interval]} className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
                     <span className="countdown font-mono text-5xl">
                         <span>{timeLeft[interval] ? timeLeft[interval]:0}</span>
                     </span>
