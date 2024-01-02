@@ -1,6 +1,6 @@
 "use client";
-import WeatherWidget from "@/components/weather/widgets";
-import TimerWidget from "@/components/timer/widget";
+import WeatherWidget from "../components/weather/widgets";
+import TimerWidget from "../components/timer/widget";
 
 
 export default function Home() {
