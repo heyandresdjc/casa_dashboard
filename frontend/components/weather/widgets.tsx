@@ -1,6 +1,5 @@
 "use client";
 import {useEffect, useState} from 'react';
-import {period} from '../../types';
 import Image from "next/image";
 
 
@@ -55,9 +54,11 @@ const WeatherWidget = () => {
         []
     );
 
-    let x = forecastHourlyData !== null? forecastHourlyData : [];
+    const relativeLocationAqr: any = relativeLocation? relativeLocation:null;
 
-    const firstFivePeriods = forecastHourlyData ? forecastHourlyData.slice(0, 5):[];
+    const forecastHourlyDataAqr: period[] = forecastHourlyData ? forecastHourlyData:[];
+    
+    const firstFivePeriods = forecastHourlyDataAqr ? forecastHourlyDataAqr.slice(0, 5):[];
 
     const first = firstFivePeriods[0];
 
@@ -72,8 +73,8 @@ const WeatherWidget = () => {
                         </span>
                         <span className="font-semibold mt-1 text-gray-500">
                             {
-                                relativeLocation ?
-                                    `${relativeLocation?.city}, ${relativeLocation?.state}` :
+                                relativeLocationAqr ?
+                                    `${relativeLocationAqr?.city}, ${relativeLocationAqr?.state}` :
                                     "Loading.."
                             }
                         </span>
@@ -87,7 +88,8 @@ const WeatherWidget = () => {
                         </span>
                         <img src={period.icon} alt={period.shortForecast}/>
                         {TimeParser(period) || "Loading..."}
-                    </div>)}
+                    </div>)
+                    }
                 </div>
             </div>
         </div>
