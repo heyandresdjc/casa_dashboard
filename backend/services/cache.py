@@ -8,7 +8,7 @@ def set_json_file_caching(file_name: str, response: dict) -> dict|None:
     assert isinstance(response, dict), "data must be in dictionary data type"
 
     with open(file_name, "w") as f:
-        json.dump(response, f)
+        json.dump(response, f, indent=4)
 
     return response
 

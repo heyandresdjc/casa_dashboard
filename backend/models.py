@@ -1,40 +1,54 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl, Field
 from datetime import datetime
 
 
-class RelativeLocation(BaseModel):
-    type: str = "Feature"
-    geometry: dict
-    properties: dict
-
-
-class Properties(BaseModel):
-    cwa: str
-    forecastOffice: str 
-    gridId: str
-    gridX: int
-    gridY: int
-    forecast: str
-    forecastHourly: str
-    forecastGridData: str
-    observationStations: str
-    relativeLocation: RelativeLocation
-    forecastZone: str
-    county: str 
-    fireWeatherZone: str
-    timeZone: str
-    radarStation: str
+class UnitMeasure(BaseModel):
+    unitCode: str
+    unitType: str
 
 
 class Geometry(BaseModel):
     type: str = "Point"
-    coordinates: list
+    coordinates: list[float|int]
 
 
-class Feature(BaseModel):
-    type: str = "Feature"
+class RelativeLocationProperties(BaseModel):
+    city: str
+    state: str
+    distance: UnitMeasure
+    bearing: UnitMeasure
+
+
+class RelativeLocation(BaseModel):
+    type: str
     geometry: Geometry
-    properties: Properties
+    properties: RelativeLocationProperties
+
+
+class WeatherDataProperties(BaseModel):
+    id: HttpUrl = Field(alias="@id")
+    type: str = Field(alias="@type")
+    cwa: str
+    forecastOffice: HttpUrl
+    gridId: str 
+    gridX: int
+    gridY: int
+    forecast: HttpUrl
+    forecastHourly: HttpUrl 
+    forecastGridData: HttpUrl
+    observationStations: HttpUrl
+    relativeLocation: RelativeLocation
+    forecastZone: HttpUrl
+    timeZone: str
+    radarStation: str
+
+
+class WeatherDataRootFeature(BaseModel):
+    context: list[str|dict] = Field(alias="@context")
+    type: str = "Feature"
+    id: str
+    geometry: Geometry
+    properties: WeatherDataProperties
 
 
 class Period(BaseModel):
@@ -45,7 +59,6 @@ class Period(BaseModel):
     isDaytime: bool
     temperature: float
     temperatureUnit: str
-    # etc define other period properties
 
 
 class Elevation(BaseModel):
@@ -64,12 +77,8 @@ class Properties(BaseModel):
     periods: list[Period]
 
 
-class Geometry(BaseModel):
-    type: str = "Polygon"
-    coordinates: list[list[list[float]]] 
-
-
 class Forecast(BaseModel):
+    context: list[str|dict] = Field(alias="@context")
     type: str = "Feature"
     geometry: Geometry 
     properties: Properties
