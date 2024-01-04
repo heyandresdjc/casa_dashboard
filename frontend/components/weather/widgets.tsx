@@ -35,9 +35,10 @@ const WeatherWidget = () => {
                         let location = data.properties?.relativeLocation.properties
 
                         setRelativeLocation(location)
-                        fetch(data.properties.forecastHourly)
+                        fetch(`http://0.0.0.0:8000/weather/${position.coords.latitude},${position.coords.longitude}/hourly`)
                             .then(response => response.json())
                             .then(data => setForecastHourlyData(data.properties.periods))
+                            .catch(error => console.error(error))
                     });
             }, function(error) {
                 console.error("Error occurred. Error code: " + error.code);

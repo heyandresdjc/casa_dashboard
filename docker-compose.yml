@@ -7,14 +7,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - '8000:8000'
-  
-  nginx: 
-    build: ./nginx
-    ports:
-      - 80:80
-  
+
   nextjs:
     container_name: nextjs
     build: 
       context: ./frontend
       dockerfile: Dockerfile
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
