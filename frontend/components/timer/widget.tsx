@@ -47,10 +47,10 @@ const TimerWidget = () => {
         if(currentKey === 'days' || currentKey === 'hours' || currentKey === 'min' || currentKey === 'secs') {
             result.push(
                 <div key={index} className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-                    <span className="countdown font-mono text-9xl">
+                    <span className="countdown font-mono text-5xl">
                         <span>{timeLeft[currentKey]}</span>
                     </span>
-                    <span className="countdown font-mono text-5xl">
+                    <span className="countdown font-mono text-2xl">
                         {currentKey}
                     </span>
                 </div>
